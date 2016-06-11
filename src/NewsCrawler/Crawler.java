@@ -3,9 +3,14 @@ package NewsCrawler;
 import cn.edu.hfut.dmic.webcollector.model.CrawlDatums;
 import cn.edu.hfut.dmic.webcollector.model.Page;
 import cn.edu.hfut.dmic.webcollector.plugin.berkeley.BreadthCrawler;
+import tools.DataBaseTool;
+
+import java.sql.ResultSet;
+
 import org.jsoup.nodes.Document;
 
 public class Crawler extends BreadthCrawler{
+	public DataBaseTool dbInstance;
 	/**
      * @param crawlPath crawlPath is the path of the directory which maintains
      * information of this crawler
@@ -13,6 +18,7 @@ public class Crawler extends BreadthCrawler{
      * links which match regex rules from pag
      */
     public Crawler(String crawlPath, boolean autoParse) {
+
     super(crawlPath, autoParse);
     /*start page*/
     this.addSeed("http://cs.scut.edu.cn/xygk/xyxw/");//http://news.hfut.edu.cn/list-1-1.html
@@ -22,7 +28,9 @@ public class Crawler extends BreadthCrawler{
     /*do not fetch jpg|png|gif*/
     this.addRegex("-.*\\.(jpg|png|gif).*");
     /*do not fetch url contains #*/
-    this.addRegex("-.*#.*");
+    this.addRegex("-.*#.*");    	
+    this.dbInstance=new DataBaseTool();
+
     }
 
     public void visit(Page page, CrawlDatums next) {
@@ -40,6 +48,8 @@ public class Crawler extends BreadthCrawler{
         System.out.println("URL:\n" + url);
         System.out.println("title:\n" + title);
         System.out.println("content:\n" + content);
+        String sql="INSERT INTO Spy_Info VALUES (spy_sequence.nextval,'"+url+"','"+title+"','"+content+"','')";
+        ResultSet rs=dbInstance.executeQuery(sql);
 
         /*If you want to add urls to crawl,add them to nextLink*/
         /*WebCollector automatically filters links that have been fetched before*/
@@ -50,12 +60,12 @@ public class Crawler extends BreadthCrawler{
     }
 
     public static void main(String[] args) throws Exception {
-    Crawler crawler = new Crawler("crawl", true);
-    crawler.setThreads(5);
-    crawler.setTopN(3);
-    //crawler.setResumable(true);
-    /*start crawl with depth of 4*/
-    crawler.start(2);
+	    Crawler crawler = new Crawler("crawl", true);
+	    crawler.setThreads(5);
+	    crawler.setTopN(100);
+	    //crawler.setResumable(true);
+	    /*start crawl with depth of 4*/
+	    crawler.start(2);
     }
 
 }

@@ -11,10 +11,10 @@ CREATE SEQUENCE spy_sequence
 drop table Spy_Info;
 create table Spy_Info(
        spy_id integer,
-       url varchar2(100),
-       title varchar2(100),
-       content varchar2(2000),
-       profile varchar(500)
+       url nvarchar2(100),
+       title nvarchar2(100),
+       content nvarchar2(2000),
+       profile nvarchar2(500)
 );
 
 select t.*,t.rowid from Spy_Info t;
