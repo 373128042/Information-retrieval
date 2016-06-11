@@ -25,7 +25,6 @@ public class Crawler extends BreadthCrawler{
     this.addRegex("-.*#.*");
     }
 
-    @Override
     public void visit(Page page, CrawlDatums next) {
     String url = page.getUrl();
     /*if page is news page*/
@@ -52,7 +51,7 @@ public class Crawler extends BreadthCrawler{
 
     public static void main(String[] args) throws Exception {
     Crawler crawler = new Crawler("crawl", true);
-    crawler.setThreads(50);
+    crawler.setThreads(5);
     crawler.setTopN(3);
     //crawler.setResumable(true);
     /*start crawl with depth of 4*/
