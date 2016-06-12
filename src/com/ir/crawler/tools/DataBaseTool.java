@@ -1,11 +1,12 @@
-package tools;
+package com.ir.crawler.tools;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.Statement;
 
-import constant.Constant;
+import com.ir.crawler.constant.Constant;
 
 public class DataBaseTool {
 	
@@ -77,7 +78,14 @@ public class DataBaseTool {
 
 		ResultSet rs=dbInstance.executeQuery(sql);
 		while (rs.next()) {
-			System.out.println(rs.getObject(4).toString());
+			System.err.println(rs.getRow());
+			ResultSetMetaData rsmd = rs.getMetaData() ;
+			int columnCount = rsmd.getColumnCount();
+			//System.out.println(columnCount);
+//			for(int i=1;i<columnCount;i++){
+//				System.out.println(rs.getObject(i));
+//			}
+			System.out.println(rs.getObject(2));
 			//System.out.println(rs.getString("id") + "\t" + rs.getString("name")+ "\t" + rs.getString("face_pic"));// 入如果返回的是int类型可以用getInt()
 		}
 	}

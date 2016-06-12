@@ -1,4 +1,4 @@
-package constant;
+package com.ir.crawler.constant;
 
 public class Constant {
 	/*******************数据库信息*********************/

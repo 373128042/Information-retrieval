@@ -1,9 +1,9 @@
-package NewsCrawler;
+package com.ir.crawler.NewsCrawler;
 
 import cn.edu.hfut.dmic.webcollector.model.CrawlDatums;
 import cn.edu.hfut.dmic.webcollector.model.Page;
 import cn.edu.hfut.dmic.webcollector.plugin.berkeley.BreadthCrawler;
-import tools.DataBaseTool;
+import com.ir.crawler.tools.DataBaseTool;
 
 import java.sql.ResultSet;
 
