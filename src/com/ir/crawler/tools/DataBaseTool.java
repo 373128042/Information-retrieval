@@ -82,10 +82,10 @@ public class DataBaseTool {
 			ResultSetMetaData rsmd = rs.getMetaData() ;
 			int columnCount = rsmd.getColumnCount();
 			//System.out.println(columnCount);
-//			for(int i=1;i<columnCount;i++){
-//				System.out.println(rs.getObject(i));
-//			}
-			System.out.println(rs.getObject(2));
+			for(int i=1;i<columnCount;i++){
+				System.out.println(rs.getObject(i));
+			}
+			//System.out.println(rs.getObject(2));
 			//System.out.println(rs.getString("id") + "\t" + rs.getString("name")+ "\t" + rs.getString("face_pic"));// 入如果返回的是int类型可以用getInt()
 		}
 	}
