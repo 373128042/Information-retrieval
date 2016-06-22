@@ -14,11 +14,12 @@ create table Spy_Info(
        url nvarchar2(100),
        title nvarchar2(100),
        content nvarchar2(2000),
-       profile nvarchar2(500)
+       profile nvarchar2(500),
+       keywords nvarchar2(100)
 );
 
 select t.*,t.rowid from Spy_Info t;
 SELECT spy_sequence.currval FROM DUAL;  
 SELECT spy_sequence.nextval FROM DUAL;  
 
-INSERT INTO Spy_Info VALUES (spy_sequence.nextval,'http://www.baidu.com','HHAA阿','速度苏打','xzc');
+INSERT INTO Spy_Info VALUES (spy_sequence.nextval,'http://www.baidu.com','HHAA阿','速度苏打','xzc','xx,cc,aa');
