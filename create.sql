@@ -15,7 +15,8 @@ create table Spy_Info(
        title nvarchar2(100),
        content nvarchar2(2000),
        profile nvarchar2(500),
-       keywords nvarchar2(100)
+       keywords nvarchar2(100),
+       create_time date
 );
 
 select t.*,t.rowid from Spy_Info t;
